@@ -1,8 +1,21 @@
 # SHARED KNOWLEDGE BASE
 > Project: [PROJECT NAME]
 > This file is the team's shared whiteboard. All agents READ from here.
-> Write rules: Gemini -> Research section. Cowork -> Specs section. Any agent -> Bugs section.
 > Cowork curates and cleans this file during every "check status".
+
+---
+
+## Write Rules
+
+| Section | Who Can Write | Notes |
+|---------|--------------|-------|
+| Test Accounts | Cowork | Add accounts as created |
+| Research & Findings | Any agent | Include source + date |
+| Bug Reports & Fixes | Any agent | Format below |
+| Design System | Cowork | After founder approval |
+| Architecture Notes | Cowork | Key patterns only |
+| API Contracts | Producing agent | Source of truth for handoffs |
+| Useful Docs & Links | Any agent | — |
 
 ---
 
@@ -15,15 +28,14 @@
 ---
 
 ## Research & Findings
-> Gemini drops research here. Include source URLs and date.
+> Include source URLs and date.
 
 _No research yet._
 
 ---
 
 ## Bug Reports & Fixes
-> Any agent logs a bug here: what it is, what was tried, what the fix is.
-> Format: [Date] [Agent] — Bug: ... Fix: ...
+> Format: [Date] [Agent] — Bug: ... Fix: ... Status: OPEN / FIXED
 
 _No bugs logged._
 
@@ -40,7 +52,7 @@ _Not yet defined._
 
 ## Architecture Notes
 
-> Document key patterns here so all agents follow the same approach.
+> Key patterns so all agents follow the same approach.
 > Auth patterns, API patterns, data flow, etc.
 
 _Not yet defined._
@@ -49,7 +61,8 @@ _Not yet defined._
 
 ## API Contracts
 
-> Source of truth for API specs. Backend builds to this, frontend calls to this.
+> Source of truth for agent handoffs. Backend builds to this, frontend calls to this.
+> The producing agent writes the contract here. The consuming agent treats it as the spec.
 
 _No APIs defined yet._
 

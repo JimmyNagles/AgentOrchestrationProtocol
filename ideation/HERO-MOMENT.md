@@ -1,80 +1,49 @@
 # HERO MOMENT
 > The single moment where the user feels the value. If you can't define this, the idea isn't ready.
 > This is the north star for every design decision, feature, and agent task.
-> Fill this in yourself, or leave it blank and Cowork will walk you through it.
 
 ---
 
 ## The User Journey (Comic Strip)
 
-> Tell the story in 4-6 panels. Each panel is a moment. Focus on what the user FEELS, not what the software does.
-
 ### Panel 1: The Trigger
-_[What happens that creates the need? What's the moment of frustration?]_
-
-> e.g., "It's 11pm. A guest messages asking about check-in. The host is exhausted and doesn't want to type the same instructions for the 50th time."
+It's 9am. Jimmy has an idea for a feature. He needs backend API changes, a new DB migration, and frontend UI updates. He opens three terminal windows, tries to remember the cold-start messages, copy-pastes them in. One of them has the wrong branch name. He fixes it. 10 minutes gone before any work starts.
 
 ### Panel 2: The Old Way
-_[How do they handle it today? What's painful about it?]_
+He assigns tasks by typing into each terminal. 20 minutes later, he can't remember what Agent 2 is doing. He alt-tabs through four windows. One agent finished but he didn't notice — it's been idle for 15 minutes. Another agent overwrote a file the first one was working on. He spends 20 minutes resolving the merge conflict. By lunch, he's frustrated and has shipped half of what he planned.
 
-> e.g., "They dig through old messages, copy-paste the check-in instructions, tweak them, send. 10 minutes gone. Again."
-
-### Panel 3: They Discover Your Product
-_[How do they first encounter it? What's the promise?]_
-
-> e.g., "A friend tells them: 'I haven't answered a guest message in 3 months. My AI handles it all.'"
+### Panel 3: They Discover AgentOffice
+A friend sends him a screenshot of their AgentOffice setup — a pixel-art office with three little characters typing away at desks, task progress bars floating above their heads, an XP counter in the corner showing "12-day shipping streak." The friend says: "I shipped my entire auth system this morning while drinking coffee and watching my agents work."
 
 ### Panel 4: The Hero Moment
-_[This is it. The single moment where they feel the value. What do they see? What do they feel?]_
-
-> e.g., "They wake up. Check their phone. Three guests messaged overnight. All three got perfect, personalized responses. Check-in instructions, local recommendations, everything. Without the host lifting a finger."
+Jimmy opens AgentOffice. He sees his office — three agent characters sitting at desks. He clicks Agent A, types "build the user settings API," clicks launch. The character starts typing. He clicks Agent B: "add the settings page UI." Launch. The character starts working. He clicks Agent C: "write tests for the settings feature." Launch. All three are working. He can SEE them working. Progress bars fill up. A notification pops: "Agent A completed — API ready. Contract written to SHARED.md." Agent C's character looks up from their desk — the dependency is met, they start pulling from the API. Jimmy sips his coffee. He's running a company.
 
 ### Panel 5: The Result
-_[What's the tangible outcome? What changed?]_
-
-> e.g., "Their response time went from 2 hours to 2 minutes. Guest satisfaction is up. They got 8 hours of sleep."
+By lunch, all three tasks are done. His XP counter ticks up. A streak badge appears: "7 days shipping." He clicks "check status" — Cowork summarizes everything, logs the decisions, queues the next tasks. The office view shows three idle agents ready for the afternoon sprint. He's shipped more before noon than he used to ship in a full day of terminal juggling.
 
 ### Panel 6: The New Normal
-_[They can't go back. What does life look like now?]_
-
-> e.g., "They manage 3x more properties. They haven't typed a guest message in months. They wonder how they ever did it manually."
+He can't go back to terminals. His office has grown from a garage to a proper studio — unlocked after shipping Phase 1. His leaderboard rank shows he's in the top 10% of founders for weekly shipping velocity. He screenshots his office and posts it on Twitter. Three people DM asking what tool this is.
 
 ---
 
 ## The Hero Moment (One Sentence)
 
-> Distill Panel 4 into a single sentence. This is your product's soul.
-
-_["The moment when [user] sees [specific thing] and feels [specific emotion]."]_
-
-> e.g., "The moment when a host wakes up and sees that every overnight guest message was handled perfectly — without them."
+**The moment when a solo founder sees three pixel-art agents typing away at their desks, each working on a real task in their real codebase, and realizes they're running a startup team — without hiring anyone.**
 
 ---
 
 ## What It FEELS Like
 
-> Not features. Not specs. The emotion.
-
-_[e.g., "It feels like having a world-class employee who never sleeps, never complains, and knows every property as well as you do."]_
+It feels like being the CEO of a tiny, hyper-productive company. You walk into your office (open the app), see your team (agents at their desks), assign work (click and type), and watch them build your product. The pixel art makes it feel playful instead of stressful. The XP and streaks make shipping feel like leveling up. You're not managing terminals — you're running a company.
 
 ---
 
 ## The Screenshot Test
 
-> If you could show someone ONE screenshot of your product that would make them say "I need this" — what would it show?
-
-_[Describe the screen. What's on it? What data? What state?]_
-
-> e.g., "A dashboard showing: 12 guest conversations handled overnight, 100% response rate, 4.9 average guest satisfaction, zero host actions needed."
+A pixel-art office with 3-4 characters at desks. One is actively typing (green status glow). One has a progress bar at 73% above their head. One has a small checkmark — task complete. In the corner: "XP: 2,340 | Level 7 | 12-day streak 🔥". At the bottom: a slim task bar showing "Settings API ✓ | Settings UI ⏳ 73% | Tests ⏳ 41%". The office has a coffee machine, a whiteboard with sticky notes, a plant. It looks like a game. It IS a game. But the code being written is real.
 
 ---
 
 ## Agent Guide
 
-> **For agents reading this:** If this file is empty or incomplete, walk the founder through the comic strip:
-> 1. "Tell me about a real moment when your user hits this problem. Set the scene."
-> 2. "What do they do right now to deal with it? Walk me through the steps."
-> 3. "Now imagine your product exists. What's different? What's the moment they go 'wow'?"
-> 4. "How does it feel? Not what the product does — how does the user FEEL in that moment?"
-> 5. "If you could show one screenshot to convince someone — what's on the screen?"
-> This is the most important file in ideation/. If the founder can't articulate the hero moment, the idea needs more work. Keep pushing until it clicks.
+> **For agents reading this:** This file is complete. All ideation gates are passed.

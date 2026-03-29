@@ -1,47 +1,39 @@
 # PROBLEM DEFINITION
 > What problem are we solving? If you can't explain the pain, the product won't matter.
-> Fill this in yourself, or leave it blank and Cowork will walk you through it.
 
 ---
 
 ## The Problem
 
-> Describe the problem in plain language. Who has this problem? What does it feel like?
+**Problem statement:** Solo founders and indie hackers who run multiple AI coding agents in parallel struggle to manage them because there's no visibility, no coordination, and no persistence — every session starts from zero.
 
-**Problem statement:** _[One sentence. "People who [do X] struggle with [Y] because [Z]."]_
+**Who feels this pain?** Solo founders, indie hackers, and small-team developers who use 2-5 AI coding agents (Claude Code, Codex, Gemini, Cursor) to build products. They're technical enough to use CLI tools but overwhelmed by the orchestration overhead.
 
-**Who feels this pain?** _[Be specific. Not "everyone" — who exactly?]_
-
-**How painful is it?** _[Daily frustration? Costs money? Wastes hours? Mild annoyance?]_
+**How painful is it?** Daily frustration. They spend more time managing agents than building. Context is lost between sessions. Agents overwrite each other's work. Review backlogs pile up. Rate limits burn 3x faster with no visibility into spend. The cognitive overhead of juggling terminals often makes the whole setup slower than just coding alone.
 
 ---
 
 ## What Do People Do Today?
 
-> How do they currently solve this problem? What's broken about those solutions?
-
 | Current Solution | What Works | What's Broken |
 |-----------------|------------|---------------|
-| _[e.g., spreadsheets]_ | _[cheap, flexible]_ | _[manual, error-prone, no collaboration]_ |
-| _[e.g., competitor X]_ | _[automated]_ | _[expensive, complex, bad UX]_ |
-| _[e.g., doing nothing]_ | _[free]_ | _[problem keeps getting worse]_ |
+| Multiple terminal tabs/tmux panes | Simple, direct control | No visibility across agents, no state persistence, no coordination |
+| Conductor (Melty Labs) | Centralized dashboard, git worktree isolation | Developer tool UX — no engagement layer, no motivation mechanics, macOS only |
+| Markdown protocol files (like ours) | Persistence across sessions, clear roles | Manual copy-paste cold starts, no visual layer, founder is the message bus |
+| Doing nothing (one agent at a time) | Simple | Leaves 80% of the speed gain on the table |
 
 ---
 
 ## Why Now?
 
-> What changed that makes this problem solvable or urgent right now? New tech? Market shift? Regulatory change?
-
-_[Why is NOW the right time to build this?]_
+1. **AI coding agents just hit mainstream.** Claude Code does 4% of all GitHub commits. Anthropic went from $1B to $19B ARR in 14 months. Cursor hit $2B ARR.
+2. **Multi-agent is the new normal.** Gartner saw a 1,445% surge in multi-agent inquiries. Claude Code's Boris Cherny runs 10-20 agents in parallel.
+3. **The tools exist but the experience doesn't.** Every competitor builds for developers-as-developers. Nobody is making this fun.
+4. **"Vibe coding" created a new user.** 63% of vibe-coded apps are built by non-developers. These users need even more structure and guidance than power developers.
+5. **Programmatic agent launching is now possible.** Claude Agent SDK, `claude -p`, Codex CLI all support non-interactive mode. You can launch agents from a UI.
 
 ---
 
 ## Agent Guide
 
-> **For agents reading this:** If this file is empty or incomplete, ask the founder these questions in order:
-> 1. "What's the problem you want to solve? Describe it like you're telling a friend."
-> 2. "Who specifically has this problem? Give me a real example of a person."
-> 3. "How are they dealing with it today? What tools or workarounds?"
-> 4. "What's broken about those workarounds?"
-> 5. "Why hasn't someone solved this already? What changed?"
-> Do NOT move to SOLUTION.md until this file has clear answers.
+> **For agents reading this:** This file is complete. Move to USER.md.

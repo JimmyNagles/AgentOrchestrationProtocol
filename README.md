@@ -1,80 +1,213 @@
-# Agent Orchestration Protocol v2.1
+# Agent Protocol v4.0
 
-An operating system for solo founders who want to move fast using multiple AI agents — without chaos.
+An operating system for solo founders who orchestrate AI agent teams.
 
-You act as CEO. The agents execute. This protocol defines who does what, how they communicate, and when code actually gets written.
-
----
-
-## The Problem This Solves
-
-Running multiple AI agents in parallel is powerful but messy. Without structure you get:
-- Agents overwriting each other's work
-- Code written before the idea is clear
-- No record of what was done or why
-- The founder spending more time managing agents than building
-
-This protocol fixes that with clear roles, async communication, and a gating system that prevents wasted effort.
+You act as CEO. The orchestrator conducts. The agents execute. This protocol defines who does what, how they communicate, and how quality is maintained — inspired by distributed systems, biological swarms, NASA mission control, and kitchen brigades.
 
 ---
 
-## How It Works
+## The Problem
 
-### The Team
+Running multiple AI agents is powerful but chaotic. Without structure:
+- Agents overwrite each other's work
+- Failed agents go undetected
+- Context is lost between sessions
+- Nobody knows what's done, what's blocked, or what's next
+- One bad output can cascade through the whole system
 
-| Agent | Tool | Role |
-|-------|------|------|
-| **Cowork** | Claude (UI/Projects) | Chief of Staff — coordinates everything, writes specs, drains agent OUTBOXes |
-| **Claude Code** | Claude Code (terminal) | Backend Domain A — DB schema, migrations, API routes |
-| **Codex** | Codex (terminal) | Backend Domain B — business logic, intelligence layer |
-| **Gemini** | Gemini / Antigravity | Frontend — all pages, components, UI + QA |
-| **You** | Your brain | CEO — make decisions, review work, push to GitHub |
+This protocol fixes that with battle-tested coordination patterns stolen from systems that solve the same problems at scale.
 
-Agents never talk to each other directly. All coordination flows through you and Cowork.
+---
 
-### Phase 0: Ideation (Before Any Code)
+## The Core Idea
 
-The `ideation/` folder contains 6 templates you fill in before a single line of code is written:
+**AI agents are stateless. Files are not.**
 
-1. **PROBLEM.md** — What problem are you solving and for whom?
-2. **USER.md** — Who exactly is the target user?
-3. **SOLUTION.md** — What are you building and what's out of scope?
-4. **MARKET.md** — Who are the competitors and how do you win?
-5. **VALIDATION.md** — What assumptions need to be tested?
-6. **HERO-MOMENT.md** — The exact moment a user realizes this product is for them
+Every agent gets its own `.md` file. That file carries the agent's current task, status, completed work, and outbox messages across sessions. When a new session starts, the agent reads its file and picks up where it left off.
 
-**No agent writes code until `HERO-MOMENT.md` is defined.** This is the most important gate in the protocol.
+Agents communicate through shared files — like ants leaving pheromone trails. The environment IS the communication medium.
 
-Cowork walks you through all of these with guided questions. You don't fill them in alone.
+---
 
-### Phase 1+: Building
-
-Once ideation is complete, Cowork plans the work and assigns tasks to each agent. The cycle looks like this:
+## Architecture
 
 ```
-You → Cowork: "check status"
-Cowork: reads all agent OUTBOXes → publishes to AGENT-STATUS.md → clears OUTBOXes → writes next tasks
-You: send cold-start messages to each agent with their new task
-Agents: execute → write completion to their OUTBOX
-(repeat)
+┌─────────────────────────────────────────────────────────────┐
+│                        FOUNDER (CEO)                         │
+│              Approves direction. Reviews work.               │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   ORCHESTRATOR (Conductor)                    │
+│     Main AI session. Writes tasks. Launches agents.          │
+│     Monitors outboxes. Coordinates handoffs.                 │
+│     Runs consensus checks. Never builds — only conducts.     │
+└───┬──────────┬──────────┬──────────┬──────────┬─────────────┘
+    │          │          │          │          │
+    ▼          ▼          ▼          ▼          ▼
+┌────────┐┌────────┐┌────────┐┌────────┐┌────────┐
+│Agent A ││Agent B ││Agent C ││Agent D ││Agent E │
+│  .md   ││  .md   ││  .md   ││  .md   ││  .md   │
+└───┬────┘└───┬────┘└───┬────┘└───┬────┘└───┬────┘
+    │          │          │          │          │
+    ▼          ▼          ▼          ▼          ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    SHARED STATE (Files)                       │
+│  SHARED.md │ AGENT-STATUS.md │ ROADMAP.md │ Code files       │
+│                                                               │
+│  Agents communicate through the environment, not directly.   │
+│  Like ants leaving pheromone trails — stigmergy.             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-Agents work in parallel on separate domains to minimize merge conflicts.
+**The Founder** is the CEO — approves direction, reviews work, pushes to GitHub.
 
-### Implementation Order
+**The Orchestrator** is the conductor — breaks down work, writes tasks to agent files, launches agents, monitors progress, coordinates handoffs, runs consensus checks. The orchestrator never builds — only conducts.
+
+**Agents** are the workers — each owns a domain (a set of files/directories), reads their task from their `.md` file, executes, and reports back via their OUTBOX.
+
+**Shared State** is the communication medium — agents read and write to shared files. No direct agent-to-agent messaging. The files ARE the message bus.
+
+---
+
+## What Makes v4.0 Different
+
+Six improvements inspired by real-world coordination systems, validated through multi-agent consensus (4 agents independently proposed the same patterns from different domains):
+
+### 1. Closed-Loop Communication
+
+*Inspired by: aviation read-backs, ER team protocols*
+
+Agents don't just read their task and go. They confirm what they understood:
 
 ```
-DB Schema (Claude Code)
-    ↓
-API Routes (Claude Code)
-    ↓
-Business Logic (Codex)
-    ↓
-Frontend UI (Gemini)
-    ↓
-QA Testing (Gemini)
-    ↓
-You review → push to GitHub
+Orchestrator writes task → Agent reads it → Agent writes read-back:
+"I will [specific action]. Files: [list]. Output: [expected result]."
+→ Orchestrator verifies → Agent proceeds
+```
+
+Prevents "I thought you meant..." errors.
+
+### 2. Pre-Flight Checklist
+
+*Inspired by: aviation pre-flight, kitchen mise en place*
+
+Every agent, every task, same checklist before starting:
+
+```
+[x] Read AGENT-PROTOCOL.md
+[x] Read SHARED.md
+[x] Read AGENT-STATUS.md
+[x] Read my agent file
+[x] Confirmed dependencies are met
+[x] Confirmed files are in my domain
+```
+
+Agents that skip context produce garbage. This ensures a consistent baseline.
+
+### 3. Task Lifecycle States
+
+*Inspired by: Kanban, CI/CD pipelines*
+
+Not just "Waiting" and "Done" — explicit states with clear meaning:
+
+```
+QUEUED → CLAIMED → IN_PROGRESS → REVIEW → DONE
+
+Special states: BLOCKED (can't proceed) | FAILED (tried, didn't work)
+```
+
+### 4. Severity Levels
+
+*Inspired by: incident response, military rules of engagement*
+
+Not all tasks need the same process:
+
+| Severity | Autonomy | Example |
+|----------|----------|---------|
+| LOW | Agent executes freely | Fix a typo |
+| MEDIUM | Agent executes, orchestrator reviews | Add an API endpoint |
+| HIGH | Orchestrator reviews plan first | Change DB schema |
+| CRITICAL | Consensus mode + Go/No-Go poll | Deploy to production |
+
+### 5. Circuit Breaker
+
+*Inspired by: distributed systems circuit breakers*
+
+If an agent fails twice on the same task type, stop sending it work:
+
+```
+CLOSED (normal) → 2 failures → OPEN (stopped)
+                                    │
+                               Fix the issue
+                                    │
+                                    ▼
+                              HALF-OPEN (test)
+                                    │
+                              ┌─────┴─────┐
+                           Pass          Fail
+                              │             │
+                         CLOSED          OPEN (escalate)
+```
+
+### 6. Consensus Mode
+
+*Inspired by: Byzantine fault tolerance, peer review, newsroom fact-checking*
+
+For high-stakes decisions, send the same task to 3+ agents independently:
+
+```
+Same task → Agent A findings
+         → Agent B findings    →  Compare:
+         → Agent C findings       3/3 agree = accept
+                                  2/3 agree = investigate
+                                  1/3 only  = verify or discard
+```
+
+No single agent is trustworthy. The consensus of multiple independent agents is high-confidence.
+
+---
+
+## The Task Flow
+
+```
+You: "Build me an auth system"
+          │
+          ▼
+Orchestrator breaks it into tasks:
+  ├── Backend: "Build auth API endpoints"     (MEDIUM)
+  ├── Frontend: "Build login/signup pages"    (MEDIUM)
+  ├── Designer: "Style the auth flow"         (LOW)
+  └── Security audit before deploy            (CRITICAL — consensus mode)
+          │
+          ▼
+Orchestrator writes tasks to each agent's .md file
+          │
+          ▼
+Each agent completes pre-flight checklist
+Each agent writes read-back confirmation
+          │
+          ▼
+Orchestrator verifies read-backs, launches agents:
+  claude -p "cold-start message" --dangerously-skip-permissions
+          │
+          ▼
+Agents work in parallel (different domains, no file overlap)
+Agents update status: CLAIMED → IN_PROGRESS → REVIEW
+          │
+          ▼
+Agents finish, write results to OUTBOX
+          │
+          ▼
+Orchestrator reads outboxes:
+  ├── Work looks good → DONE, assign next task
+  ├── Work has issues → feedback to agent, stays IN_PROGRESS
+  ├── Agent failed → circuit breaker, reassign
+  └── High-stakes → consensus mode before accepting
+          │
+          ▼
+You review and push to GitHub
 ```
 
 ---
@@ -82,108 +215,96 @@ You review → push to GitHub
 ## File Structure
 
 ```
-/
-├── AGENT-PROTOCOL.md       # Core rules every agent must follow
-├── AGENT-STATUS.md         # Real-time team dashboard (Cowork manages this)
-├── ROADMAP.md              # Product vision, phases, codebase map
-├── SHARED.md               # Shared knowledge: APIs, DB schema, test accounts, bugs
+project/
+├── AGENT-PROTOCOL.md        # This file — the rules
+├── AGENT-STATUS.md          # Live dashboard (orchestrator manages)
+├── ROADMAP.md               # Product vision and phases
+├── SHARED.md                # Shared knowledge: APIs, bugs, architecture
 │
-├── ideation/
+├── ideation/                # Phase 0 — define before building
 │   ├── PROBLEM.md
 │   ├── USER.md
 │   ├── SOLUTION.md
 │   ├── MARKET.md
 │   ├── VALIDATION.md
-│   └── HERO-MOMENT.md      # The gate. Nothing ships without this.
+│   └── HERO-MOMENT.md       # The gate — nothing ships without this
 │
-├── agents/
-│   ├── _template.md        # Blueprint for adding new agents
-│   ├── cowork.md           # Cowork's current task + completed log + OUTBOX
-│   ├── claude-code.md      # Claude Code's current task + log + OUTBOX
-│   ├── codex.md            # Codex's current task + log + OUTBOX
-│   └── gemini.md           # Gemini's current task + log + OUTBOX
+├── agents/                  # One file per agent — this IS their state
+│   ├── _template.md         # Blueprint for new agents
+│   ├── backend.md
+│   ├── frontend.md
+│   ├── designer.md
+│   ├── research.md
+│   └── product.md
 │
-└── designs/                # Design screenshots by phase
+└── designs/                 # Design references by phase
 ```
 
 ---
 
 ## Getting Started
 
-### 1. Clone and initialize
+### 1. Clone
 
 ```bash
 git clone git@github.com:JimmyNagles/AgentOrchestrationProtocol.git my-project
 cd my-project
 ```
 
-Search and replace every placeholder in the files:
-- `[PROJECT NAME]` → your project name
-- `[branch]` → your branch naming convention
-- `[tech stack]` → your stack (e.g. Next.js, Supabase, etc.)
+### 2. Set up agents
 
-Clear the agent log sections (keep the headers, remove example entries).
+For each agent you need, copy `agents/_template.md` and name it by role:
+- `agents/backend.md`
+- `agents/frontend.md`
+- `agents/research.md`
 
-### 2. Start Cowork
+Define their DOMAIN OWNERSHIP (which files they can touch).
 
-Open a new Claude Project and paste this cold-start message:
+### 3. Start orchestrating
 
-```
-You are Cowork, Chief of Staff for [PROJECT NAME].
+Open Claude Code. You are the orchestrator. Write tasks to agent files, launch them:
 
-Please read these files in order:
-1. AGENT-PROTOCOL.md
-2. ideation/PROBLEM.md
-3. ideation/USER.md
-4. ideation/SOLUTION.md
-5. ideation/MARKET.md
-6. ideation/VALIDATION.md
-7. ideation/HERO-MOMENT.md
-8. AGENT-STATUS.md
-9. agents/cowork.md
-10. agents/claude-code.md
-11. agents/codex.md
-12. agents/gemini.md
-13. ROADMAP.md
-14. SHARED.md
-
-Once you've read everything, check the ideation/ files. If any are incomplete, walk me through them using the Agent Guide questions in each file. Do not move to planning until HERO-MOMENT.md is filled in.
+```bash
+claude -p "You are BACKEND on [project].
+1. Read AGENT-PROTOCOL.md
+2. Read agents/backend.md for your task
+3. Read SHARED.md
+Complete pre-flight. Write read-back. Execute. Update OUTBOX." \
+--dangerously-skip-permissions
 ```
 
-### 3. Complete ideation
+### 4. Monitor and iterate
 
-Cowork will ask you questions. Answer them. It will fill in the templates as you go.
-
-### 4. Assign and execute
-
-Once ideation is done, tell Cowork: `"check status"` — it will write tasks for each agent and update AGENT-STATUS.md.
-
-Then open each agent in its respective tool (Claude Code terminal, Codex terminal, Gemini) and send the cold-start message from `AGENT-PROTOCOL.md`.
-
-### 5. Adding a new agent
-
-Copy `agents/_template.md`, rename it, and update it with the agent's role, branch, and domain. Then add it to the roster in `AGENT-PROTOCOL.md`.
+Read agent outboxes. Verify work. Assign next tasks. Repeat.
 
 ---
 
-## Core Rules (For Agents and Founders)
+## Patterns We Stole From
 
-- **One task at a time.** Finish before starting new.
-- **Stay in your lane.** Don't do another agent's job.
-- **Use your OUTBOX.** Never edit AGENT-STATUS.md directly — that's Cowork's job.
-- **Never push to GitHub.** Only the founder pushes.
-- **Never push to main.** Always use a feature branch.
-- **When in doubt, stop and ask.** Don't guess.
-- **No UI changes without founder approval.**
+| Pattern | Source | How We Use It |
+|---------|--------|---------------|
+| Stigmergy | Ant colonies | Agents communicate through shared files, not direct messages |
+| Quorum sensing | Bee swarms | Consensus mode — majority agreement = confidence |
+| Circuit breaker | Distributed systems | Stop sending work to failing agents |
+| Read-back | Aviation / ER teams | Agents confirm understanding before executing |
+| Go/No-Go polling | NASA mission control | Single NO-GO halts irreversible actions |
+| Mise en place | Kitchen brigade | Pre-flight checklist before every task |
+| MAINTAINERS file | Linux kernel | Domain ownership — each file has one owner |
+| CODEOWNERS | GitHub | File-path patterns route work to the right agent |
+| Byzantine fault tolerance | Blockchain / Paxos | Multiple independent agents, same task, compare results |
+| Incident command | ER / Fire teams | Clear roles, clear authority, clear escalation |
+| Brigade de cuisine | Restaurant kitchens | Specialized stations, one expediter, hands-off leader |
 
 ---
 
 ## Origin
 
-This protocol was proven while building ConciergeAI and refined into a reusable template. The core insight: agents need the same clarity a human team needs — defined roles, async communication, and a clear definition of done.
+This protocol was invented while building ConciergeAI, refined across multiple projects, and stress-tested through multi-agent consensus research. The v4.0 improvements were proposed by 4 independent AI agents analyzing coordination patterns from distributed systems, biology, software engineering, and human organizations — and validated by finding which patterns 3+ agents independently agreed on.
+
+The core insight: **agents need the same clarity the best human teams need — defined roles, async communication, quality gates, and a clear definition of done.**
 
 ---
 
 ## License
 
-MIT — use it, fork it, adapt it for your stack.
+MIT — use it, fork it, adapt it.

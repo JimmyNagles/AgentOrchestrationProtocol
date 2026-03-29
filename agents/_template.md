@@ -1,5 +1,6 @@
 # [AGENT NAME] — [Role Title]
 > Role: [Role description]
+> Domain: [What area of the codebase this agent owns]
 > Project: [Project name]
 > Read AGENT-PROTOCOL.md before starting any task.
 > Read SHARED.md for architecture patterns and API contracts.
@@ -13,6 +14,14 @@
 
 ---
 
+## DOMAIN OWNERSHIP
+> Files and areas this agent owns. Other agents should not modify these.
+
+- [e.g., src/api/**, db/migrations/**]
+- [e.g., src/components/**, src/pages/**]
+
+---
+
 ## COMPLETED TASKS
 
 _No tasks completed yet._
@@ -21,7 +30,7 @@ _No tasks completed yet._
 
 ## BRANCH RULES
 - Active branch: [branch]
-- NEVER push to GitHub — Jimmy does that
+- NEVER push to main — founder does that
 
 ## STATS
 - Tasks completed total: 0

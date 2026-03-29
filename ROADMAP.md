@@ -16,12 +16,14 @@
 
 > Document key architectural and product decisions here as you make them.
 > Format: Decision + Rationale
+> Also logged in AGENT-STATUS.md DECISIONS LOG for cross-session persistence.
 
 ---
 
 ## Codebase Map
 
 > Once the project has code, map the folder structure here so all agents know where things go.
+> Include domain ownership — which agent owns which directories.
 
 ```
 [project-name]/
@@ -38,10 +40,7 @@
 │   └── HERO-MOMENT.md
 ├── agents/
 │   ├── _template.md
-│   ├── claude-code.md
-│   ├── codex.md
-│   ├── gemini.md
-│   └── cowork.md
+│   └── [name].md (one per agent)
 ├── designs/
 └── [your code here]
 ```
@@ -50,7 +49,7 @@
 
 ## Phase 0: Ideation
 > Define the idea before building. See `ideation/` folder.
-> **Gate:** Phase 1 does not start until `ideation/HERO-MOMENT.md` has a clear hero moment.
+> **Gate:** Phase 1 does not start until ALL ideation files are complete.
 
 **Status:** _Not started_
 
@@ -76,11 +75,16 @@ _Nothing yet._
 - ...
 
 ### Agent Assignments
-| Agent | Task | Scope |
-|-------|------|-------|
-| Claude Code | — | — |
-| Codex | — | — |
-| Gemini | — | — |
+| Agent | Task | Domain |
+|-------|------|--------|
+| [Agent] | — | — |
+
+### Dependency Order
+> Which agent needs to finish before the next can start?
+
+```
+[Agent A task] → [Agent B task] → [Agent C task]
+```
 
 ---
 
@@ -103,12 +107,12 @@ _Nothing yet._
 ## How to Use This Roadmap
 
 **Every session:**
-1. Jimmy says "check status" to Cowork
+1. Founder says "check status" to Cowork
 2. Cowork reads all agent files, drains OUTBOXes, updates AGENT-STATUS.md
 3. Cowork assigns next tasks from this roadmap into each agent file
-4. Jimmy triggers each agent with their cold-start message
+4. Founder triggers each agent with their cold-start message
 
 **Phase transitions:**
-- Gemini QA must PASS before moving to next phase
-- Jimmy reviews + pushes to GitHub before next phase starts
+- QA must PASS before moving to next phase
+- Founder reviews + pushes to GitHub before next phase starts
 - Cowork updates this roadmap with any scope changes

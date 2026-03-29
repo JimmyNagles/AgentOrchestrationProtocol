@@ -1,56 +1,49 @@
 # MARKET & COMPETITIVE LANDSCAPE
 > Who else is solving this problem? Where are the gaps? How do we position?
-> Fill this in yourself, or leave it blank and Cowork will walk you through it.
 
 ---
 
 ## Market Overview
 
-**How big is the opportunity?** _[How many people have this problem? Is the market growing?]_
+**How big is the opportunity?** The AI coding tools market is $7.37B in 2025, projected $23.97B by 2030 (26.6% CAGR). The vibe coding segment alone is $4.7B in 2026, projected $12.3B by 2027. Multi-agent orchestration inquiries surged 1,445% (Gartner). Claude Code alone has a $2.5B run-rate. There are millions of developers running multiple AI agents daily with zero dedicated orchestration UI.
 
-**What category does this fit in?** _[e.g., "project management," "AI writing tools," "developer productivity"]_
+**What category does this fit in?** AI agent orchestration tool — but positioned as a gamified productivity experience, not a developer utility. Think "Game Dev Tycoon meets Claude Code."
 
 ---
 
 ## Competitors
 
-> List the top 3-5 alternatives. Include direct competitors AND workarounds people use today.
-
 | Competitor | What They Do Well | Where They Fall Short | Their Price Point |
 |-----------|------------------|----------------------|-------------------|
-| _[Name]_ | _[Strengths]_ | _[Weaknesses]_ | _[Free/Paid/$X]_ |
-| _[Name]_ | _[Strengths]_ | _[Weaknesses]_ | _[Free/Paid/$X]_ |
-| _[Name]_ | _[Strengths]_ | _[Weaknesses]_ | _[Free/Paid/$X]_ |
-| _[DIY/manual]_ | _[Free, flexible]_ | _[Slow, error-prone]_ | _[Free]_ |
+| **Conductor** (Melty Labs, YC) | Clean dashboard, git worktree isolation, Linear integration | macOS only, no engagement layer, developer-tool UX, no persistence protocol | Free (uses your Claude login) |
+| **cmux** (Manaflow, YC) | Native terminal, fast, Ghostty-based | It's a terminal, not an orchestrator. No visibility, no state management | Free (open-source) |
+| **Dorothy** | Desktop app, Kanban board, Telegram/Slack control, 10+ agents | Electron app, no gamification, no visual agent representation | Open-source |
+| **Claw-Empire** | Pixel office UI, PixiJS + React, closest to our vision | Open-source project, not a product. No protocol layer, no progression mechanics | Free (open-source) |
+| **Pixel Agents** | VS Code extension, pixel characters animate based on agent activity | Viewer only — can't launch agents, can't assign tasks, no game mechanics | Free |
+| **Multiple terminals** | Direct control, no abstraction | No visibility, no persistence, no coordination, manual everything | Free |
 
 ---
 
 ## Our Positioning
 
-> Where do we fit? What's our angle?
+**We are the only agent orchestration tool that makes managing AI agents feel like playing a startup simulation game — where the startup you're building is real.**
 
-**We are the only [category] that [unique differentiator].**
-
-_[e.g., "We are the only AI concierge platform that handles the entire guest lifecycle from booking to checkout without human intervention."]_
+Every competitor either gives you a dashboard (boring) or a terminal (invisible). We give you a game that produces real work.
 
 ---
 
 ## Pricing Gut Check
 
-> You don't need a final pricing model. Just a direction.
+**Model:** Freemium with a Pro tier.
 
-**Model:** _[Freemium? Flat fee? Per-seat? Usage-based?]_
+- **Free:** 1-2 agents, basic office, XP tracking, local only
+- **Pro ($19-29/mo):** Unlimited agents, office progression, leaderboards, cloud state sync, advanced analytics (token spend, velocity tracking)
+- **Team ($49/mo):** Multiple founders, shared office, collaborative orchestration
 
-**Ballpark:** _[What would users reasonably pay? What does the competition charge?]_
+**Rationale:** The target user already pays $20/mo for Claude Pro and $20/mo for Cursor. They're proven to pay for AI dev tools. A $19-29/mo orchestration layer on top is within budget and provides clear ROI (time saved on context switching and coordination).
 
 ---
 
 ## Agent Guide
 
-> **For agents reading this:** If this file is empty or incomplete, ask the founder:
-> 1. "Who are the top 3 competitors or alternatives people use today?"
-> 2. "What do they do well? What's frustrating about them?"
-> 3. "What's your angle — why would someone pick you over them?"
-> 4. "How big is this market? Is it growing?"
-> 5. "Any initial thoughts on pricing?"
-> Use web search to research competitors if the founder names them. Bring data, not just opinions.
+> **For agents reading this:** This file is complete. Move to VALIDATION.md.
