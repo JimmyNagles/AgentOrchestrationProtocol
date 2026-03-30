@@ -1,7 +1,7 @@
 # [PROJECT NAME] ROADMAP
 > Goal: [What are we building and why?]
 > Format: Phased — no dates, phases complete when they're done
-> Owner: Cowork (Chief of Staff)
+> Owner: Orchestrator
 > Last updated: —
 
 ---
@@ -32,15 +32,9 @@
 ├── ROADMAP.md
 ├── SHARED.md
 ├── ideation/
-│   ├── PROBLEM.md
-│   ├── USER.md
-│   ├── SOLUTION.md
-│   ├── MARKET.md
-│   ├── VALIDATION.md
-│   └── HERO-MOMENT.md
 ├── agents/
 │   ├── _template.md
-│   └── [name].md (one per agent)
+│   └── [agent-name].md (one per agent)
 ├── designs/
 └── [your code here]
 ```
@@ -75,13 +69,11 @@ _Nothing yet._
 - ...
 
 ### Agent Assignments
-| Agent | Task | Domain |
-|-------|------|--------|
-| [Agent] | — | — |
+| Agent | Task | Domain | Severity |
+|-------|------|--------|----------|
+| — | — | — | — |
 
 ### Dependency Order
-> Which agent needs to finish before the next can start?
-
 ```
 [Agent A task] → [Agent B task] → [Agent C task]
 ```
@@ -89,11 +81,6 @@ _Nothing yet._
 ---
 
 ## Phase 2: [Name]
-> Not started.
-
----
-
-## Phase 3: [Name]
 > Not started.
 
 ---
@@ -107,12 +94,12 @@ _Nothing yet._
 ## How to Use This Roadmap
 
 **Every session:**
-1. Founder says "check status" to Cowork
-2. Cowork reads all agent files, drains OUTBOXes, updates AGENT-STATUS.md
-3. Cowork assigns next tasks from this roadmap into each agent file
-4. Founder triggers each agent with their cold-start message
+1. Founder says "check status" to orchestrator
+2. Orchestrator reads all agent files, drains OUTBOXes, updates AGENT-STATUS.md
+3. Orchestrator assigns next tasks from this roadmap into each agent file
+4. Orchestrator launches agents with cold-start messages
 
 **Phase transitions:**
 - QA must PASS before moving to next phase
 - Founder reviews + pushes to GitHub before next phase starts
-- Cowork updates this roadmap with any scope changes
+- Orchestrator updates this roadmap with any scope changes

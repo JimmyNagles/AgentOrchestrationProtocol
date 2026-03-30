@@ -1,8 +1,7 @@
-# FRONTEND — Frontend Engineer
-> Role: React components, hooks, app logic, wiring up APIs
-> Domain: app/client/src/ (components, hooks, App.tsx)
-> Project: AgentOffice
-> You are a Claude Code instance acting as the Frontend Engineer.
+# [AGENT NAME] — [Role Title]
+> Role: [Role description]
+> Domain: [What area of the codebase this agent owns]
+> Project: [PROJECT NAME]
 > Read AGENT-PROTOCOL.md before starting any task.
 > Read SHARED.md for architecture patterns and API contracts.
 
@@ -10,16 +9,15 @@
 
 ## CURRENT TASK
 - Task: IDLE
-- Branch: n/a
-- Status: Waiting
+- Branch: [branch]
+- Status: QUEUED
 
 ---
 
 ## DOMAIN OWNERSHIP
-- app/client/src/components/**
-- app/client/src/hooks/**
-- app/client/src/App.tsx
-- app/client/src/types.ts
+> Files and areas this agent owns. Other agents should not modify these.
+
+- [to be defined]
 
 ---
 
@@ -37,6 +35,6 @@ _No tasks completed yet._
 
 ## OUTBOX
 > When you finish a task, write your update here.
-> The orchestrator reads this and publishes to AGENT-STATUS.md, then clears this section.
+> The orchestrator reads this on every "check status" and publishes to AGENT-STATUS.md, then clears this section.
 
 _empty_
